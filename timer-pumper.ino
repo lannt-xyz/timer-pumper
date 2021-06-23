@@ -721,7 +721,25 @@ void loop() {
     client.println("<head>");
     // Refresh home page every 60 sec
     //client.println("<META HTTP-EQUIV=""refresh"" CONTENT=""60"">");
-    client.print("<style> body {background-color: #C3FCF7;Color: #2B276E;}</style>");
+
+    // new format
+    client.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+    client.println("<style>");
+    client.println("  body {background-color: #C3FCF7;Color: #2B276E;}");
+    client.println("  html {font-family: Arial; display: inline-block; text-align: center;}");
+    client.println("  body {max-width: 600px; margin:0px auto; padding-bottom: 25px;}");
+    client.println("  form {padding-left: 1.5rem; text-align: left;}");
+    client.println("  input {font-size: large}");
+    client.println("  input[type=text] {height: 2.0rem; text-align: center; vertical-align: midle; border-color: #04AA6D; border-radius: 5px;}");
+    client.println("  input[type=submit] {height: 2.0rem; background-color: #04AA6D; border: none; color: white; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px; padding: 5px 15px;}");
+    client.println("  input[type=radio] {width: 1.2rem; height: 1.2rem;}");
+    client.println("  input[type=checkbox] {width: 1.2rem; height: 1.2rem;}");
+    client.println("  a:link, a:visited {background-color: white; color: black; border: 2px solid #04AA6D; padding: 5px 5px; text-align: center; text-decoration: none; display: inline-block;}");
+    client.println("  a:hover, a:active {background-color: green; color: white;}");
+    client.println("  .item_wrapper {display: flex; align-items: flex-end; align-content: center; align-items: center}");
+    client.println("</style>");
+    // new format
+
     client.println("<title>");
     client.println(DevName);
     client.println("</title>");
@@ -931,37 +949,44 @@ void loop() {
       client.print(Off_Time[PgmNr]%100);    
       client.print("\">");
       if (Error2 == true) client.print(ErrMsg);
-      client.print("<br><br>");
+      client.print("<br><div class=\"day-repeat\"><br>");
       //Day 1
-      client.print("<input type=\"Checkbox\" name=\"D1\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D1\" id=\"program_d1\"");
       if (On_Days[PgmNr][0]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Sun<br>");
+      client.print("><label for=\"program_d1\"> Sun</label></div>");
       //Day 2
-      client.print("<input type=\"Checkbox\" name=\"D2\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D2\" id=\"program_d2\"");
       if (On_Days[PgmNr][1]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Mon<br>");
+      client.print("><label for=\"program_d2\"> Mon</label></div>");
       //Day 3
-      client.print("<input type=\"Checkbox\" name=\"D3\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D3\" id=\"program_d3\"");
       if (On_Days[PgmNr][2]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Tue<br>");
+      client.print("><label for=\"program_d3\"> Tue</label></div>");
       //Day 4
-      client.print("<input type=\"Checkbox\" name=\"D4\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D4\" id=\"program_d4\"");
       if (On_Days[PgmNr][3]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Wed<br>");
+      client.print("><label for=\"program_d4\"> Wed</label></div>");
       //Day 5
-      client.print("<input type=\"Checkbox\" name=\"D5\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D5\" id=\"program_d5\"");
       if (On_Days[PgmNr][4]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Thu<br>");
+      client.print("><label for=\"program_d5\"> Thu</label></div>");
       //Day 6
-      client.print("<input type=\"Checkbox\" name=\"D6\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D6\" id=\"program_d6\"");
       if (On_Days[PgmNr][5]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Fri<br>");
+      client.print("><label for=\"program_d6\"> Fri</label></div>");
       //Day 7
-      client.print("<input type=\"Checkbox\" name=\"D7\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"Checkbox\" name=\"D7\" id=\"program_d7\"");
       if (On_Days[PgmNr][6]==true) client.print("checked"); else client.print("unchecked");
-      client.print("> Sat<br>");
+      client.print("><label for=\"program_d7\"> Sat</label></div>");
       //Button
-      client.println("<br>");
+      client.println("</div></br>");
       client.println("<input type=\"submit\" name =\"SaveBtn2\" value=\"Save\">");
       client.print("&emsp;");
       client.println("<input type=\"submit\" name =\"ClearBtn1\" value=\"Clear\">");
@@ -973,20 +998,22 @@ void loop() {
       client.print("<font size = \"4\"><b>Configuration</font></b><br><br>"); 
       // Device Name
       client.print("Device Name: ");
-      client.print("<input type=\"text\"<input maxlength=\"30\" size=\"35\" name=\"Dev\" value =\"");
+      client.print("<input type=\"text\"<input maxlength=\"30\" size=\"30\" style=\"text-align: left;\" name=\"Dev\" value =\"");
       client.print(DevName);
       client.println("\"><br><br>");
       //Mode Select
-      client.println("<b>Mode: </b>");
-      client.print("<input type=\"radio\" name=\"mode\" value=\"Auto\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<b>Mode: </b>");
+      client.print("<input type=\"radio\" name=\"mode\" id=\"mode_auto\" value=\"Auto\"");
       if (Mode == 2) client.print("checked");
-      client.print("/> Auto ");
-      client.print("<input type=\"radio\" name=\"mode\" value=\"On\"");
+      client.print("/><label for=\"mode_auto\"> Auto </label>");
+      client.print("<input type=\"radio\" name=\"mode\" id=\"mode_on\" value=\"On\"");
       if (Mode == 1) client.print("checked");
-      client.print("/> On ");
-      client.print("<input type=\"radio\" name=\"mode\" value=\"Off\"");
+      client.print("/><label for=\"mode_on\"> On </label>");
+      client.print("<input type=\"radio\" name=\"mode\" id=\"mode_off\" value=\"Off\"");
       if (Mode == 0) client.print("checked");
-      client.print("/> Off <br><br>");
+      client.print("/><label for=\"mode_off\"> Off </label><br><br>");
+      client.println("</div>");
       
       client.print("<font size = \"4\"><b>Button Function</font></b><br>"); 
       // Device Name
@@ -996,17 +1023,20 @@ void loop() {
       client.print(DevName);
       client.print(" is on:<br>");
       // do nothing
-      client.print("<input type=\"radio\" name=\"BtnOff\" value=\"0\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"radio\" name=\"BtnOff\" id=\"btn_off_0\" value=\"0\"");
       if (OffMode == 0) client.print("checked");
-      client.print("/> Do nothing<br>");
+      client.print("/><label for=\"btn_off_0\"> Do nothing</label></div>");
       // turn off
-      client.print("<input type=\"radio\" name=\"BtnOff\" value=\"1\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"radio\" name=\"BtnOff\" id=\"btn_off_1\" value=\"1\"");
       if (OffMode == 1) client.print("checked");
-      client.print("/> Turn OFF until next event<br>");
+      client.print("/><label for=\"btn_off_1\"> Turn OFF until next event</label></div>");
       // turn on for specific time
-      client.print("<input type=\"radio\" name=\"BtnOff\" value=\"2\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"radio\" name=\"BtnOff\" id=\"btn_off_2\" value=\"2\"");
       if (OffMode == 2) client.print("checked");
-      client.print("/> Turn OFF for specific time<br>");
+      client.print("/><label for=\"btn_off_2\"> Turn OFF for specific time</label></div>");
       // time input
       client.print("&emsp;&emsp;<input type=\"text\"<input maxlength=\"2\" size=\"3\" name=\"ToffH\"value =\"");
       client.print(TimerHourOff);
@@ -1029,17 +1059,20 @@ void loop() {
       client.print(DevName);
       client.print(" is off:<br>");
       // do nothing
-      client.print("<input type=\"radio\" name=\"BtnOn\" value=\"0\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"radio\" name=\"BtnOn\" id=\"btn_on_0\" value=\"0\"");
       if (OnMode == 0) client.print("checked");
-      client.print("/> Do nothing<br>");
+      client.print("/><label for=\"btn_on_0\"> Do nothing</label></div>");
       // turn on til next event
-      client.print("<input type=\"radio\" name=\"BtnOn\" value=\"1\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"radio\" name=\"BtnOn\" id=\"btn_on_1\" value=\"1\"");
       if (OnMode == 1) client.print("checked");
-      client.print("/> Turn ON until next event<br>");
+      client.print("/><label for=\"btn_on_1\"> Turn ON until next event</label></div>");
       // turn off for specific time
-      client.print("<input type=\"radio\" name=\"BtnOn\" value=\"2\"");
+      client.println("<div class=\"item_wrapper\">");
+      client.print("<input type=\"radio\" name=\"BtnOn\" id=\"btn_on_2\" value=\"2\"");
       if (OnMode == 2) client.print("checked");
-      client.print("/> Turn ON for specific time<br>");
+      client.print("/><label for=\"btn_on_2\"> Turn ON for specific time</label></div>");
       // time input
       client.print("&emsp;&emsp;<input type=\"text\"<input maxlength=\"2\" size=\"3\" name=\"TonH\"value =\"");
       client.print(TimerHourOn);
