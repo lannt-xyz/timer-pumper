@@ -28,11 +28,11 @@
 
 1. Reset board by break the power source
 2. Using your phone or laptop find and connect to the wifi named `IoT Smart Timer`
-3. After wifi was connected, a web page will display as below
+3. After wifi was connected, a web page will display as below  
 ![Image](./asset/initial.PNG)
-4. Chose `Configure WiFi`
+4. Chose `Configure WiFi`  
 ![Image](./asset/select_wifi.PNG)
-5. Input for Wifi Password and IP Address information
+5. Input for Wifi Password and IP Address information  
 ![Image](./asset/config_ip.PNG)
-6. Access to control page from the web browser via the inputed Static IP.
+6. Access to control page from the web browser via the inputed Static IP  
 ![Image](./asset/connect_controller.PNG)
